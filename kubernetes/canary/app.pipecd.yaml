@@ -31,5 +31,5 @@ spec:
         config:
           commitMessage: "Update {{ .Value }} by {{ .Event }}"
           replacements:
-            - kubernetes/canary/deployment.yaml
+            - file: kubernetes/canary/deployment.yaml
     
