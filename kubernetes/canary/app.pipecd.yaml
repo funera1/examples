@@ -31,5 +31,6 @@ spec:
         config:
           commitMessage: "Update {{ .Value }} by {{ .Event }}"
           replacements:
-            - file: kubernetes/canary/deployment.yaml
+            - file: kubernetes/canary/app.pipecd.yaml
+              yamlField: $.spec.labels.team
     
