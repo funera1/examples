@@ -23,22 +23,13 @@ spec:
   description: |
     This app demonstrates how to deploy a Kubernetes app by Canary strategy without requering any mesh.\
     References: [adding a new app](https://pipecd.dev/docs/user-guide/managing-application/adding-an-application/), [app configuration](https://pipecd.dev/docs/user-guide/configuration-reference/)
-  # eventWatcher:
-  #   - matcher:
-  #       name: test-template
-  #     handler:
-  #       type: GIT_UPDATE
-  #       config:
-  #         commitMessage: "Update {{ .Value }} by {{ .Event }}"
-  #         replacements:
-  #           - file: kubernetes/canary/app.pipecd.yaml
-  #             yamlField: $.spec.labels.team
-  #   - matcher:
-  #       name: change-replicas
-  #     handler:
-  #       type: GIT_UPDATE
-  #       config:
-  #         commitMessage: "Update {{ .Value }} by {{ .Event }}"
-  #         replacements:
-  #           - file: kubernetes/canary/deployment.yaml
-  #             yamlField: $.spec.replicas
+  eventWatcher:
+    - matcher:
+        name: change-replicas
+      handler:
+        type: GIT_UPDATE
+        config:
+          commitMessage: "Update {{ .Value }} by {{ .Event }}"
+          replacements:
+            - file: deployment.yaml
+              yamlField: $.spec.replicas
