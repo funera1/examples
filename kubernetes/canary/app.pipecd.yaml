@@ -29,7 +29,7 @@ spec:
       handler:
         type: GIT_UPDATE
         config:
-          commitMessage: "Update {{ .Value }} by {{ .Event }}"
+          commitMessage: "Update { .Value } by { .Event }"
           replacements:
             - file: deployment.yaml
               yamlField: $.spec.replicas
